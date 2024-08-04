@@ -1,8 +1,8 @@
 {
-  "family": "shadow",
+  "family": "your-task-definition-name",
   "containerDefinitions": [
     {
-      "name": "shadow",
+      "name": "your-container-name",
       "image": "147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:shadow",
       "essential": true,
       "memory": 512,
@@ -10,16 +10,15 @@
       "portMappings": [
         {
           "containerPort": 80,
-          "protocol": "tcp"
+          "hostPort": 80
         }
       ]
     }
   ],
   "requiresCompatibilities": [
-    "FARGATE"
+    "EC2"
   ],
-  "networkMode": "awsvpc",
+  "networkMode": "bridge",
   "cpu": "256",
-  "memory": "512",
-  "executionRoleArn": "arn:aws:iam::147397011329:role/ecsTaskExecutionRole"
+  "memory": "512"
 }
