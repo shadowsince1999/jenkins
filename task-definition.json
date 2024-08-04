@@ -1,8 +1,8 @@
 {
-  "family": "your-task-definition-name",
+  "family": "shadow",
   "containerDefinitions": [
     {
-      "name": "your-container-name",
+      "name": "shadow",
       "image": "147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:shadow",
       "essential": true,
       "memory": 512,
