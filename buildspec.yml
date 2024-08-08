@@ -5,12 +5,12 @@ phases:
     commands:
       - echo Installing Docker
       - yum install -y docker
-      # Docker service might already be running; no need to start it manually
+      - docker --version # Optional: Verify Docker installation
 
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 147397011329.dkr.ecr.us-east-1.amazonaws.com)
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 147397011329.dkr.ecr.us-east-1.amazonaws.com
 
   build:
     commands:
