@@ -1,0 +1,6 @@
+[
+  {
+    "name": "shadow",
+    "imageUri": "147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:$CODEBUILD_RESOLVED_SOURCE_VERSION"
+  }
+]
