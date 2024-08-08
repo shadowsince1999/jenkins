@@ -21,6 +21,7 @@ phases:
   post_build:
     commands:
       - echo Pushing the Docker image...
+      - docker images # List Docker images to verify the correct tags
       - docker push 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:$CODEBUILD_RESOLVED_SOURCE_VERSION
       - docker push 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:latest
       - echo Creating imagedefinitions.json...
