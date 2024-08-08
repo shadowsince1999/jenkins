@@ -25,7 +25,7 @@ phases:
       - docker push 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:$CODEBUILD_RESOLVED_SOURCE_VERSION
       - docker push 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:latest
       - echo Creating imagedefinitions.json...
-      - printf '[{"name":"your-container-name","imageUri":"147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:%s"}]' "$CODEBUILD_RESOLVED_SOURCE_VERSION" > imagedefinitions.json
+      - printf '[{"name":"shadow","imageUri":"147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:%s"}]' "$CODEBUILD_RESOLVED_SOURCE_VERSION" > imagedefinitions.json
 
 artifacts:
   files:
