@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Docker
+      - yum install -y docker
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region us-east-1)
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:$CODEBUILD_RESOLVED_SOURCE_VERSION .
+      - docker tag 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:$CODEBUILD_RESOLVED_SOURCE_VERSION 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:latest
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - docker push 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:latest
+artifacts:
+  files: '**/*'
