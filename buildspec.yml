@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Installing Docker
       - yum install -y docker
-      - service docker start  # Start Docker service if necessary
+      # Docker service might already be running; no need to start it manually
 
   pre_build:
     commands:
