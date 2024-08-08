@@ -5,19 +5,24 @@ phases:
     commands:
       - echo Installing Docker
       - yum install -y docker
+      - service docker start  # Start Docker service if necessary
+
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region us-east-1)
+      - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 147397011329.dkr.ecr.us-east-1.amazonaws.com)
+
   build:
     commands:
       - echo Building the Docker image...
       - docker build -t 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:$CODEBUILD_RESOLVED_SOURCE_VERSION .
       - docker tag 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:$CODEBUILD_RESOLVED_SOURCE_VERSION 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:latest
+
   post_build:
     commands:
       - echo Pushing the Docker image...
       - docker push 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:$CODEBUILD_RESOLVED_SOURCE_VERSION
       - docker push 147397011329.dkr.ecr.us-east-1.amazonaws.com/shadow:latest
+
 artifacts:
   files: '**/*'
